@@ -18,7 +18,7 @@ class PersonController < ApplicationController
 			new_skills.push(object)
 		end
 
-		new_skills = new_skills.sort{ |a1,a2| a2[:kudos] <=> a1[:kudos] }
+		new_skills = new_skills.sort{ |a1,a2| a2[:kudos] <=> a1	[:kudos] }
 
 		render json: {
 			"person" 		=> person ,

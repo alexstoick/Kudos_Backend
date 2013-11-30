@@ -9,6 +9,12 @@ class KudoController < ApplicationController
 		#create or find them
 		#associate them with the person if required
 
+		kudo = Kudo.new
+		kudo.person_id = id
+		kudo.sender_id = params[:sender]
+		kudo.description = "-"
+		kudo.save!
+
 		skills = skills_string.split
 
 		skills.each do |s|
@@ -28,10 +34,17 @@ class KudoController < ApplicationController
 				person_skill.save!
 			end
 
+			kudoSkill = SkillKudo.new
+			kudoSkill.kudo_id = kudo.id
+			kudoSkill.skill_id = skill.id
+			kudoSkill.save
+
 		end
 
 
 
-		render json: person.skills.pluck(:name)
+
+
+		render json: { "success" => true }
 	end
 end
