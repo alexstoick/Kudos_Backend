@@ -13,10 +13,12 @@ class PersonController < ApplicationController
 		skills.each do |skill|
 			current_skill_kudos = skill_kudos.select {|f| f[:skill_id]==skill.id }
 			object = {}
-			object["kudos"] = current_skill_kudos.count
-			object["skill"] = skill.name
+			object[:kudos] = current_skill_kudos.count
+			object[:skill] = skill.name
 			new_skills.push(object)
 		end
+
+		new_skills = new_skills.sort{ |a1,a2| a2[:kudos] <=> a1[:kudos] }
 
 		render json: {
 			"person" 		=> person ,
