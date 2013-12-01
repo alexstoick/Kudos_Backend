@@ -7,4 +7,5 @@ KudosBackend::Application.routes.draw do
 	match "person/:id" , :to => "kudo#create" , :via => :post
 	match "skill/", :to => "person#find", :via => :post
 	match "skill/", :to => "skill#index", :via => :get
+	match "leaderboard/", :to => "person#leaderboard", :via => :get
 end
