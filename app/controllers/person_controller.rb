@@ -56,7 +56,7 @@ class PersonController < ApplicationController
 		skills_string = params[:skill]
 		skills_string.downcase!
 		required_skills = skills_string.split
-		required_skills.sort
+		required_skills = required_skills.sort
 
 		people = Person.select([:id,:name]).all
 		people_with_skill = []
@@ -82,6 +82,7 @@ class PersonController < ApplicationController
 				people_with_skill.push(object)
 			end
 		end
+		people_with_skill = people_with_skill.sort{ |a1,a2| a2[:kudos] <=> a1[:kudos]}
 		render json: people_with_skill
 	end
 
